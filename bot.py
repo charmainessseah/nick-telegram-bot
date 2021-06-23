@@ -53,6 +53,8 @@ def getCurrentOccupancy():
     driver = webdriver.Chrome(PATH, chrome_options=chrome_options)
     driver.get(url)
 
+    # int conversion issue
+
     # max_occupancy = driver.find_element_by_class_name("max-occupancy").text
     # int_max_occupancy = int(max_occupancy[15: len(max_occupancy)])
     # current_occupacy = driver.find_element_by_class_name(
@@ -63,8 +65,12 @@ def getCurrentOccupancy():
     #     (int_max_occupancy / 100) * int_current_occupacy_percentage)
     # facility_count = "Overall occupancy at the Nick: " + \
     #     str(int_current_occupancy) + "/" + str(int_max_occupancy) + "\n\n"
-    curr_occ = driver.find_element_by_class_name("occupancy-count").text
-    facility_count = "Overall occupancy at the Nick: " + curr_occ + "\n\n"
+
+    # percentage value only
+
+    # curr_occ = driver.find_element_by_class_name("occupancy-count").text
+    # facility_count = "Overall occupancy at the Nick: " + curr_occ + "\n\n"
+    facility_count = "Occupancy at The Nick:\n\n"
     driver.quit()
 
     # retrieving specific facility count
