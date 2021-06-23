@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 
-PORT = os.environ.get('PORT', 5000)
+PORT = os.environ.get('PORT', 8443)
 TOKEN = os.environ.get('TOKEN')
 URL = os.environ.get('URL')
 
