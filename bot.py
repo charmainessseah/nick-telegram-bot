@@ -7,6 +7,7 @@ import time
 PORT = os.environ.get('PORT', 8443)
 TOKEN = os.environ.get('TOKEN')
 URL = os.environ.get('URL')
+TOKEN = '1822847242:AAH5SK3FhU9FL8IYkgUWBXdKdgOQ-oaqNSk'
 
 starting_message = 'Send \"get\" to for current occupancy at The Nick'
 
@@ -23,6 +24,7 @@ def main():
 
     updater.start_webhook(listen='0.0.0.0', port=PORT,
                           url_path=TOKEN, webhook_url=URL + TOKEN)
+
     updater.idle()
 
 
@@ -32,7 +34,6 @@ def start(update, context):
 
 def handleMessage(update, context):
     user_text = update.message.text
-
     if (user_text == 'get'):
         update.message.reply_text('Please wait a couple of seconds')
         currentOccupancy = getCurrentOccupancy()
@@ -57,7 +58,7 @@ def getCurrentOccupancy():
     int_current_occupancy = int(
         (int_max_occupancy / 100) * int_current_occupacy_percentage)
     facility_count = "Overall occupancy at the Nick: " + \
-        str(int_current_occupancy) + "/" + str(int_max_occupancy) + "\n"
+        str(int_current_occupancy) + "/" + str(int_max_occupancy) + "\n\n"
     driver.quit()
 
     # retrieving specific facility count
@@ -91,10 +92,10 @@ def getCurrentOccupancy():
         max_capacity = data_all_locations[area][2]
         last_updated_time = data_all_locations[area][3]
         facility_count += location + ": " + current_occ + \
-            "/" + max_capacity + "(" + last_updated_time + ")\n"
+            "/" + max_capacity + " (" + last_updated_time + ")\n\n"
 
     return facility_count
 
 
-if (__name__ == 'main'):
+if (__name__ == '__main__'):
     main()
