@@ -27,18 +27,18 @@ def main():
 
 
 def start(update, context):
-    update.reply_text(starting_message)
+    update.message.reply_text(starting_message)
 
 
 def handleMessage(update, context):
     user_text = update.message.text
 
     if (user_text == 'get'):
-        update.reply_text('Please wait a couple of seconds')
+        update.message.reply_text('Please wait a couple of seconds')
         currentOccupancy = getCurrentOccupancy()
-        update.reply_text(currentOccupancy)
+        update.message.reply_text(currentOccupancy)
     else:
-        update.reply_text('Invalid command: ' + starting_message)
+        update.message.reply_text('Invalid command: ' + starting_message)
 
 
 def getCurrentOccupancy():
