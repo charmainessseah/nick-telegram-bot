@@ -64,7 +64,7 @@ def getCurrentOccupancy():
     # facility_count = "Overall occupancy at the Nick: " + \
     #     str(int_current_occupancy) + "/" + str(int_max_occupancy) + "\n\n"
     curr_occ = driver.find_element_by_class_name("occupancy-count").text
-    facility_count = "Overall occupancy at the Nick: " + curr_occ
+    facility_count = "Overall occupancy at the Nick: " + curr_occ + "\n\n"
     driver.quit()
 
     # retrieving specific facility count
