@@ -54,7 +54,7 @@ def getCurrentOccupancy():
     driver.get(url)
 
     max_occupancy = driver.find_element_by_class_name("max-occupancy").text
-    int_max_occupancy = int(float(max_occupancy[15: len(max_occupancy)]))
+    int_max_occupancy = int(max_occupancy[15: len(max_occupancy)])
     current_occupacy = driver.find_element_by_class_name(
         "occupancy-count").text
     int_current_occupacy_percentage = int(
