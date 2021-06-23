@@ -7,7 +7,7 @@ import time
 PORT = os.environ.get('PORT', 8443)
 TOKEN = os.environ.get('TOKEN')
 URL = os.environ.get('URL')
-TOKEN = '1822847242:AAH5SK3FhU9FL8IYkgUWBXdKdgOQ-oaqNSk'
+PATH = executable_path = os.environ.get("CHROMEDRIVER_PATH")
 
 starting_message = 'Send \"get\" to for current occupancy at The Nick'
 
@@ -44,11 +44,15 @@ def handleMessage(update, context):
 
 def getCurrentOccupancy():
     url = "https://services.recwell.wisc.edu/FacilityOccupancy"
-    path = "C:\Program Files (x86)\chromedriver.exe"
-    chromeOptions = Options()
-    chromeOptions.headless = True
-    driver = webdriver.Chrome(path)
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(PATH, chrome_options=chrome_options)
     driver.get(url)
+
     max_occupancy = driver.find_element_by_class_name("max-occupancy").text
     int_max_occupancy = int(max_occupancy[15: len(max_occupancy)])
     current_occupacy = driver.find_element_by_class_name(
@@ -62,7 +66,7 @@ def getCurrentOccupancy():
     driver.quit()
 
     # retrieving specific facility count
-    driver = webdriver.Chrome(path)
+    driver = webdriver.Chrome(PATH, chrome_options=chrome_options)
     url = "https://recwell.wisc.edu/liveusage/"
     driver.get(url)
     time.sleep(3)
