@@ -8,7 +8,7 @@ TOKEN = os.environ.get('TOKEN')
 URL = os.environ.get('URL')
 PATH = executable_path = os.environ.get("CHROMEDRIVER_PATH")
 
-starting_message = 'Send \"get\" to for current occupancy at The Nick'
+starting_message = 'Send \"get\" for current occupancy at The Nick'
 
 
 def main():
@@ -67,6 +67,7 @@ def getCurrentOccupancy():
 
     # percentage value only
 
+    # url currently has no data
     # curr_occ = driver.find_element_by_class_name("occupancy-count").text
     # facility_count = "Overall occupancy at the Nick: " + curr_occ + "\n\n"
     facility_count = "Occupancy at The Nick:\n\n"
