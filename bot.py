@@ -1,7 +1,6 @@
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
 import os
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import time
 
 PORT = os.environ.get('PORT', 8443)
@@ -34,7 +33,7 @@ def start(update, context):
 
 def handleMessage(update, context):
     user_text = update.message.text
-    if (user_text == 'get'):
+    if (user_text.lower() == 'get'):
         update.message.reply_text('Please wait a couple of seconds')
         currentOccupancy = getCurrentOccupancy()
         update.message.reply_text(currentOccupancy)
